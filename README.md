@@ -12,6 +12,24 @@ Adicionalmente, se organizó el proyecto creando carpetas para una mejor estruct
 Carpeta de imágenes (img)
 Archivo de estilos (css)
 Archivo de scripts (js)
+# 📌 Commit 2 - Finalización y organización del contenido HTML
+En este segundo commit se completó la estructura HTML del proyecto web **"Aprendo Contigo"**, organizando el código y agregando todas las secciones principales del sitio.
+
+Se mejoró la organización del documento mediante una correcta indentación y estructura semántica utilizando etiquetas como `<header>`, `<main>`, `<section>`, `<article>` y `<footer>`, facilitando el mantenimiento y la lectura del código.
+
+Durante este avance se implementaron las siguientes funcionalidades:
+
+* Se finalizaron las secciones de **Áreas Académicas** y **Catálogo de Servicios**.
+* Se agregaron las **clases individuales**, **paquetes de aprendizaje**, **servicios adicionales**, **reconocimientos** y **promociones**.
+* Se incorporó la sección de **Testimonios** para mostrar experiencias de los estudiantes y acudientes.
+* Se añadió la sección del **Asistente IA**, dejando preparada la interfaz para su futura implementación.
+* Se desarrolló la sección de **Contacto**, incluyendo un formulario funcional con validaciones HTML (`required`, `pattern`, `maxlength`, `minlength`) y conexión con Formspree para el envío de solicitudes.
+* Se creó la sección de **Iniciar sesión**, preparándola para futuras funcionalidades de autenticación.
+* Se implementó el **Footer** con información institucional y enlaces a las redes sociales del emprendimiento.
+* Se integraron las imágenes, el video institucional y los diferentes recursos multimedia utilizados en la página.
+* Finalmente, se revisó la organización general del código HTML, dejando el proyecto listo para iniciar el desarrollo de los estilos con CSS.
+
+Con este commit se da por finalizada la primera etapa del desarrollo (HTML), quedando una estructura sólida y preparada para comenzar el diseño visual y el desarrollo responsive mediante CSS.
 # 📌 Commit 3 - Diseño visual y estilos CSS del proyecto
 
 En este tercer commit se desarrolló completamente el diseño visual del sitio web **"Aprendo Contigo"** mediante CSS, aplicando estilos modernos, colores de marca y una mejor experiencia de usuario.
