@@ -45,3 +45,20 @@ Se implementaron:
 * Adaptación responsive para diferentes dispositivos.
 
 Con este commit se finalizó la parte visual del proyecto, dejando la página con un diseño completo, atractivo y organizado.
+📌 Commit 4 - Corrección responsive para tablet y celular
+
+En este cuarto commit se realizaron ajustes de adaptabilidad del proyecto “Aprendo Contigo” para mejorar su visualización en tablets y celulares.
+
+Se implementaron:
+
+Corrección y optimización de las media queries.
+
+Ajuste del rango responsive para dispositivos como iPad, iPad Pro, Galaxy Tab y otros tablets.
+
+Mejoras en la distribución del menú de navegación.
+
+Corrección de imágenes y secciones que se recortaban en algunos dispositivos.
+
+Ajustes de grid, flex, márgenes y paddings para una visualización más uniforme en pantallas medianas y pequeñas.
+
+Con este commit se mejoró la experiencia responsive del sitio manteniendo el diseño visual original del proyecto.
