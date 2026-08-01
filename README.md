@@ -62,3 +62,15 @@ Corrección de imágenes y secciones que se recortaban en algunos dispositivos.
 Ajustes de grid, flex, márgenes y paddings para una visualización más uniforme en pantallas medianas y pequeñas.
 
 Con este commit se mejoró la experiencia responsive del sitio manteniendo el diseño visual original del proyecto.
+📌 Commit 5 - Implementación de funcionalidades con JavaScript
+
+En este quinto commit se inició la integración de JavaScript en el proyecto “Aprendo Contigo” para agregar interactividad y mejorar la experiencia del usuario dentro del sitio web.
+
+Se implementaron:
+
+- Creación del menú hamburguesa responsive para mejorar la navegación en dispositivos móviles.
+- Validación de formulario en tiempo real, mostrando mensajes y verificando los datos ingresados por el usuario.
+- Manipulación del DOM para crear y modificar elementos dinámicamente durante la interacción con la página.
+- Implementación de event listeners para detectar acciones del usuario como clics, escritura y envío de formularios.
+
+Con este commit se dio inicio al uso de JavaScript dentro del proyecto, agregando comportamiento dinámico y mejorando la funcionalidad general del sitio sin afectar el diseño visual existente.

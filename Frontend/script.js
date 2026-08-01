@@ -1,1 +1,276 @@
-// Funciones JavaScript del proyecto Aprendo Contigo
+document.addEventListener("DOMContentLoaded", () => {
+
+
+
+  const boton = document.querySelector(".menu-hamburguesa");
+  const menu = document.querySelector(".menu");
+
+  if (boton && menu) {
+
+    boton.addEventListener("click", () => {
+
+      menu.classList.toggle("activo");
+
+    });
+
+  }
+  const formulario = document.querySelector(".formulario-contacto form");
+
+
+  if (formulario) {
+
+
+    const acudiente = document.getElementById("acudiente");
+    const telefono = document.getElementById("telefono");
+    const edad = document.getElementById("edad");
+    const grado = document.getElementById("grado");
+    const modalidad = document.getElementById("modalidad");
+    const area = document.getElementById("area");
+    const mensaje = document.getElementById("mensaje");
+
+    function mostrarMensaje(campo, texto, estado) {
+
+
+      let mensajeError = campo.nextElementSibling;
+
+
+      if (!mensajeError || !mensajeError.classList.contains("mensaje-error")) {
+
+
+        mensajeError = document.createElement("small");
+
+        mensajeError.classList.add("mensaje-error");
+
+
+        campo.parentNode.insertBefore(
+          mensajeError,
+          campo.nextSibling
+        );
+
+      }
+      mensajeError.textContent = texto;
+
+
+
+      if (estado === "error") {
+
+
+        campo.style.border = "2px solid red";
+
+        mensajeError.style.color = "red";
+
+
+      } else {
+
+
+        campo.style.border = "2px solid green";
+
+        mensajeError.textContent = "";
+
+      }
+
+
+    }
+    function validarNombre() {
+
+
+      if (acudiente.value.trim() === "") {
+
+
+        mostrarMensaje(
+          acudiente,
+          "El nombre es obligatorio",
+          "error"
+        );
+
+
+        return false;
+
+      }
+
+
+      mostrarMensaje(
+        acudiente,
+        "",
+        "correcto"
+      );
+
+
+      return true;
+
+    }
+
+
+
+    function validarTelefono() {
+
+
+      const telefonoRegex = /^[0-9]{10}$/;
+
+
+
+      if (!telefonoRegex.test(telefono.value)) {
+
+
+        mostrarMensaje(
+          telefono,
+          "Debe tener exactamente 10 números",
+          "error"
+        );
+
+
+        return false;
+
+      }
+      mostrarMensaje(
+        telefono,
+        "",
+        "correcto"
+      );
+
+
+      return true;
+
+    }
+    function validarEdad() {
+
+
+      if (
+        edad.value === "" ||
+        edad.value < 3 ||
+        edad.value > 18
+      ) {
+
+
+        mostrarMensaje(
+          edad,
+          "Ingrese una edad válida",
+          "error"
+        );
+
+
+        return false;
+
+      }
+
+
+
+      mostrarMensaje(
+        edad,
+        "",
+        "correcto"
+      );
+
+
+      return true;
+
+    }
+    function validarCampo(campo) {
+
+
+      if (campo.value.trim() === "") {
+
+
+        mostrarMensaje(
+          campo,
+          "Este campo es obligatorio",
+          "error"
+        );
+
+
+        return false;
+
+      }
+
+
+
+      mostrarMensaje(
+        campo,
+        "",
+        "correcto"
+      );
+
+
+      return true;
+
+    }
+    acudiente.addEventListener(
+      "input",
+      validarNombre
+    );
+
+
+    telefono.addEventListener(
+      "input",
+      validarTelefono
+    );
+
+
+    edad.addEventListener(
+      "input",
+      validarEdad
+    );
+
+
+    grado.addEventListener(
+      "input",
+      () => validarCampo(grado)
+    );
+
+
+    area.addEventListener(
+      "input",
+      () => validarCampo(area)
+    );
+
+
+    mensaje.addEventListener(
+      "input",
+      () => validarCampo(mensaje)
+    );
+
+
+    modalidad.addEventListener(
+      "change",
+      () => validarCampo(modalidad)
+    );
+    formulario.addEventListener(
+      "submit",
+      function (event) {
+
+
+        const valido =
+
+          validarNombre() &&
+          validarTelefono() &&
+          validarEdad() &&
+          validarCampo(grado) &&
+          validarCampo(modalidad) &&
+          validarCampo(area) &&
+          validarCampo(mensaje);
+
+
+
+        if (!valido) {
+
+
+          event.preventDefault();
+
+
+          alert(
+            "Por favor completa correctamente el formulario"
+          );
+
+
+        }
+
+
+      }
+
+    );
+
+
+  }
+
+
+});
