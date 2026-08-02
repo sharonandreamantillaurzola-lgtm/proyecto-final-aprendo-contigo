@@ -74,3 +74,17 @@ Se implementaron:
 - Implementación de event listeners para detectar acciones del usuario como clics, escritura y envío de formularios.
 
 Con este commit se dio inicio al uso de JavaScript dentro del proyecto, agregando comportamiento dinámico y mejorando la funcionalidad general del sitio sin afectar el diseño visual existente.
+📌 Commit 6 - Implementación de función básica en JavaScript
+
+En este sexto commit se comenzó a trabajar con funciones en JavaScript, aplicando los conceptos vistos durante la clase del 1 de agosto.
+
+Se implementó una nueva sección interactiva dentro del proyecto "Aprendo Contigo", con el objetivo de practicar el uso de funciones de JavaScript de una forma relacionada con el sitio web.
+
+Se realizó:
+
+Creación de un nuevo elemento en la página para interactuar con JavaScript.
+Implementación de una función que permite agregar diferentes servicios académicos seleccionados por el usuario.
+Actualización automática de la lista de servicios y del valor total seleccionado.
+Aplicación de manipulación del DOM y eventos para responder a las acciones del usuario.
+
+Este commit corresponde a la práctica realizada en clase, donde el profesor solicitó integrar una función sencilla adaptada al proyecto que cada estudiante estuviera desarrollando y pidio subirla.

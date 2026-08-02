@@ -274,3 +274,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+// PLAN PERSONALIZADO DE APRENDIZAJE
+
+
+const servicio = document.getElementById("servicio");
+const listaServicios = document.getElementById("listaServicios");
+const precio = document.getElementById("precio");
+const botonAgregar = document.getElementById("agregarServicio");
+
+
+let total = 0;
+
+
+function agregarServicio() {
+
+
+    let nombre = servicio.options[servicio.selectedIndex].text;
+
+    let valor = Number(servicio.value);
+
+
+
+    if (valor > 0) {
+
+
+        let nuevoElemento = document.createElement("li");
+
+
+        nuevoElemento.textContent = nombre;
+
+
+        listaServicios.appendChild(nuevoElemento);
+
+
+
+        total = total + valor;
+
+
+        precio.textContent = "$" + total;
+
+
+    } else {
+
+
+        alert("Selecciona un servicio");
+
+
+    }
+
+
+}
+
+
+botonAgregar.addEventListener(
+    "click",
+    agregarServicio
+);

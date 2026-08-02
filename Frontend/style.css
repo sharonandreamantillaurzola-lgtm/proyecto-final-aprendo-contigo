@@ -4040,3 +4040,344 @@ footer::selection {
   display: flex;
 
 }
+
+/*CALCULAR EL PRECIO A PARTIR DE FUNCIONES*/
+
+.selector-servicios {
+
+  width: 90%;
+  max-width: 900px;
+
+  margin: 60px auto;
+
+  padding: 45px;
+
+  background: white;
+
+  border-radius: 25px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  text-align: center;
+
+  border-top: 6px solid #7B2CBF;
+
+}
+
+
+
+.selector-servicios h2 {
+
+  font-size: 38px;
+
+  margin-bottom: 15px;
+
+  background: linear-gradient(90deg,
+      #7B2CBF,
+      #3A86FF,
+      #38B000);
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+}
+
+
+
+.selector-servicios p {
+
+  font-size: 18px;
+
+  color: #555;
+
+  margin-bottom: 30px;
+
+}
+
+.selector-servicios label {
+
+  display: block;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  margin-bottom: 15px;
+
+  color: #333;
+
+}
+
+
+#servicio {
+
+  width: 80%;
+
+  padding: 15px;
+
+  border-radius: 15px;
+
+  border: 2px solid #7B2CBF;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  outline: none;
+
+}
+
+
+
+#servicio:focus {
+
+  border-color: #38B000;
+
+}
+
+
+#agregarServicio {
+
+  margin-top: 25px;
+
+  padding: 15px 35px;
+
+  border: none;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+
+  background: linear-gradient(90deg,
+      #7B2CBF,
+      #3A86FF);
+
+
+  transition: .3s;
+
+}
+
+
+
+#agregarServicio:hover {
+
+  transform: translateY(-5px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+
+}
+
+.servicios-elegidos {
+
+  margin-top: 35px;
+
+  padding: 25px;
+
+  background: #f5f1ff;
+
+  border-radius: 20px;
+
+}
+
+
+
+.servicios-elegidos h3 {
+
+  color: #7B2CBF;
+
+  font-size: 24px;
+
+}
+
+
+
+#listaServicios {
+
+  list-style: none;
+
+  padding: 0;
+
+}
+
+
+
+#listaServicios li {
+
+  background: white;
+
+  margin: 12px auto;
+
+  padding: 15px;
+
+  width: 90%;
+
+  border-radius: 15px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+
+  font-size: 17px;
+
+}
+
+
+
+.total-servicios {
+
+  margin-top: 30px;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+
+  background: linear-gradient(135deg,
+      #e9d8ff,
+      #dcecff);
+
+}
+
+
+
+.total-servicios h3 {
+
+  color: #333;
+
+}
+
+
+
+#precio {
+
+  font-size: 38px;
+
+  font-weight: bold;
+
+  color: #38B000;
+
+}
+
+/*tablet*/
+
+@media(max-width:1280px) {
+
+
+  .selector-servicios {
+
+    width: 85%;
+
+    padding: 35px;
+
+  }
+
+
+  .selector-servicios h2 {
+
+    font-size: 32px;
+
+  }
+
+
+  #servicio {
+
+    width: 100%;
+
+  }
+
+
+  #listaServicios li {
+
+    width: 100%;
+
+  }
+
+
+}
+/*celular*/
+
+@media(max-width:600px) {
+
+
+  .selector-servicios {
+
+    width: 90%;
+
+    padding: 25px 15px;
+
+  }
+
+
+  .selector-servicios h2 {
+
+    font-size: 25px;
+
+  }
+
+
+  .selector-servicios p {
+
+    font-size: 15px;
+
+  }
+
+
+  .selector-servicios label {
+
+    font-size: 17px;
+
+  }
+
+
+
+  #servicio {
+
+    width: 100%;
+
+    font-size: 14px;
+
+  }
+
+
+
+  #agregarServicio {
+
+    width: 90%;
+
+    font-size: 15px;
+
+  }
+
+
+
+  .servicios-elegidos {
+
+    padding: 15px;
+
+  }
+
+
+
+  #listaServicios li {
+
+    font-size: 14px;
+
+  }
+
+
+
+  #precio {
+
+    font-size: 30px;
+
+  }
+
+
+
+}
