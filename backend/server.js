@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const Servicio = require('./modelos/Servicio');
 const Promocion = require('./modelos/Promocion');
@@ -7,6 +8,7 @@ const Reconocimiento = require('./modelos/Reconocimiento');
 const Contacto = require('./modelos/Contacto');
 
 const app = express();
+app.use(cors());
 
 
 // ==================================================

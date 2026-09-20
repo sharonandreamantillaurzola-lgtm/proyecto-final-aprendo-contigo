@@ -330,3 +330,82 @@ botonAgregar.addEventListener(
     "click",
     agregarServicio
 );
+
+// ==================================================
+// CONEXIÓN CON EL BACKEND DE APRENDO CONTIGO
+// ==================================================
+
+const API_URL = "https://proyecto-final-aprendo-contigo.onrender.com";
+
+// Obtener servicios desde MongoDB
+async function cargarServicios() {
+    try {
+        const respuesta = await fetch(`${API_URL}/productos`);
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron obtener los servicios");
+        }
+
+        const servicios = await respuesta.json();
+
+        console.log("Servicios cargados desde el backend:", servicios);
+
+        return servicios;
+
+    } catch (error) {
+        console.error("Error al conectar con el backend:", error);
+    }
+}
+
+// Obtener promociones desde MongoDB
+async function cargarPromociones() {
+    try {
+        const respuesta = await fetch(`${API_URL}/promociones`);
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron obtener las promociones");
+        }
+
+        const promociones = await respuesta.json();
+
+        console.log("Promociones cargadas desde el backend:", promociones);
+
+        return promociones;
+
+    } catch (error) {
+        console.error("Error al cargar promociones:", error);
+    }
+}
+
+// Obtener reconocimientos desde MongoDB
+async function cargarReconocimientos() {
+    try {
+        const respuesta = await fetch(`${API_URL}/reconocimientos`);
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron obtener los reconocimientos");
+        }
+
+        const reconocimientos = await respuesta.json();
+
+        console.log(
+            "Reconocimientos cargados desde el backend:",
+            reconocimientos
+        );
+
+        return reconocimientos;
+
+    } catch (error) {
+        console.error(
+            "Error al cargar reconocimientos:",
+            error
+        );
+    }
+}
+
+// Cargar información cuando abre la página
+document.addEventListener("DOMContentLoaded", () => {
+    cargarServicios();
+    cargarPromociones();
+    cargarReconocimientos();
+});
