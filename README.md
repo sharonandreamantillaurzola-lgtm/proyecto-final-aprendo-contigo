@@ -88,3 +88,31 @@ Actualización automática de la lista de servicios y del valor total selecciona
 Aplicación de manipulación del DOM y eventos para responder a las acciones del usuario.
 
 Este commit corresponde a la práctica realizada en clase, donde el profesor solicitó integrar una función sencilla adaptada al proyecto que cada estudiante estuviera desarrollando y pidio subirla.
+
+📌 **Commit 7 - Implementación del Backend y conexión con MongoDB**
+
+En este séptimo commit se comenzó la implementación del backend del proyecto **“Aprendo Contigo”**, utilizando **Node.js, Express y MongoDB**, con el objetivo de conectar la aplicación con una base de datos y permitir la gestión de la información desde una API.
+
+Se realizó:
+
+* Creación de la carpeta **Backend** para separar la lógica del servidor del frontend.
+* Configuración de un servidor utilizando **Node.js y Express**.
+* Conexión del backend con **MongoDB** mediante **Mongoose**.
+* Creación de modelos para organizar la información de:
+
+  * Servicios.
+  * Promociones.
+  * Reconocimientos.
+  * Contactos.
+* Creación y carga de los servicios académicos iniciales en MongoDB.
+* Creación de datos iniciales para promociones y reconocimientos.
+* Implementación de rutas de la API para consultar y administrar la información.
+* Implementación de operaciones **GET, POST, PUT y DELETE** para los servicios.
+* Implementación de operaciones **GET, POST, PUT y DELETE** para las promociones.
+* Implementación de operaciones **GET, POST, PUT y DELETE** para los reconocimientos.
+* Implementación de rutas para registrar y consultar los contactos recibidos desde la página.
+* Implementación de actualización del estado de los contactos, permitiendo cambiar entre **Pendiente, Contactado y Atendido**.
+* Realización de pruebas de las diferentes rutas para comprobar que la información se guardara, consultara, actualizara y eliminara correctamente.
+* Verificación de la comunicación entre el servidor y la base de datos.
+
+Este commit corresponde al avance realizado en clase para comenzar la construcción de la parte **backend** del proyecto, dejando preparada la estructura necesaria para conectar posteriormente el frontend público y desarrollar futuras funciones administrativas.
