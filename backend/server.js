@@ -13,7 +13,7 @@ const app = express();
 // CONEXIÓN CON MONGODB
 // ==================================================
 
-mongoose.connect('mongodb+srv://jacobogarcesoquendo:aFJzVMGN3o7fA38A@cluster0.mqwbn.mongodb.net/aprendocontigo')
+mongoose.connect('process.env.MONGO_URI')
     .then(() => {
         console.log('MongoDB conectado');
     })
@@ -384,8 +384,8 @@ app.put('/contactos/:id', async (req, res) => {
 // SERVIDOR
 // ==================================================
 
-app.listen(3000, () => {
-    console.log(
-        'Servidor funcionando en http://localhost:3000'
-    );
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
