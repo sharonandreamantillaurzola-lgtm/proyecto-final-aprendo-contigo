@@ -13,13 +13,11 @@ const app = express();
 // CONEXIÓN CON MONGODB
 // ==================================================
 
-mongoose.connect('process.env.MONGO_URI')
-    .then(() => {
-        console.log('MongoDB conectado');
-    })
-    .catch((error) => {
-        console.log('Error al conectar con MongoDB:', error);
-    });
+const mongoUri = process.env.MONGO_URI?.trim().replace(/^["']|["']$/g, '');
+
+mongoose.connect(mongoUri)
+    .then(() => console.log('MongoDB conectado'))
+    .catch(error => console.error('Error al conectar con MongoDB:', error));ss
 
 
 // Permite recibir información en formato JSON
