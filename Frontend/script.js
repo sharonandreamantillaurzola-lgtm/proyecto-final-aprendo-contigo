@@ -350,62 +350,36 @@ async function cargarServicios() {
 
         console.log("Servicios cargados desde el backend:", servicios);
 
+        // Buscar el menú de servicios
+        const selector = document.getElementById("servicio");
+
+        if (selector) {
+
+            // Limpiar las opciones actuales
+            selector.innerHTML = `
+                <option value="0">
+                    -- Elige un servicio --
+                </option>
+            `;
+
+            // Agregar los servicios que vienen de MongoDB
+            servicios.forEach(servicio => {
+
+                const opcion = document.createElement("option");
+
+                opcion.value = servicio.precio || 0;
+
+                opcion.textContent =
+                    `${servicio.nombre} - $${servicio.precio || 0}`;
+
+                selector.appendChild(opcion);
+
+            });
+        }
+
         return servicios;
 
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
 }
-
-// Obtener promociones desde MongoDB
-async function cargarPromociones() {
-    try {
-        const respuesta = await fetch(`${API_URL}/promociones`);
-
-        if (!respuesta.ok) {
-            throw new Error("No se pudieron obtener las promociones");
-        }
-
-        const promociones = await respuesta.json();
-
-        console.log("Promociones cargadas desde el backend:", promociones);
-
-        return promociones;
-
-    } catch (error) {
-        console.error("Error al cargar promociones:", error);
-    }
-}
-
-// Obtener reconocimientos desde MongoDB
-async function cargarReconocimientos() {
-    try {
-        const respuesta = await fetch(`${API_URL}/reconocimientos`);
-
-        if (!respuesta.ok) {
-            throw new Error("No se pudieron obtener los reconocimientos");
-        }
-
-        const reconocimientos = await respuesta.json();
-
-        console.log(
-            "Reconocimientos cargados desde el backend:",
-            reconocimientos
-        );
-
-        return reconocimientos;
-
-    } catch (error) {
-        console.error(
-            "Error al cargar reconocimientos:",
-            error
-        );
-    }
-}
-
-// Cargar información cuando abre la página
-document.addEventListener("DOMContentLoaded", () => {
-    cargarServicios();
-    cargarPromociones();
-    cargarReconocimientos();
-});
