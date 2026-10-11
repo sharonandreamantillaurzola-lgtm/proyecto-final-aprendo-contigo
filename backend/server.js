@@ -1,26 +1,21 @@
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import express from 'express';
+import cors from 'cors';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { ServicioModel } from './modelos/Servicio.js';
+import { PromocionModel } from './modelos/Promocion.js';
+import { ReconocimientoModel } from './modelos/Reconocimiento.js';
+import { ContactoModel } from './modelos/Contacto.js';
 
-require('dotenv').config();
 
-const dns = require('node:dns');
-dns.setServers(['8.8.8.8']);
-
-const mongoose = require('mongoose');
-
-const express = require('express');
-const cors = require('cors');
-
-const Servicio = require('./modelos/Servicio');
-const Promocion = require('./modelos/Promocion');
-const Reconocimiento = require('./modelos/Reconocimiento');
-const Contacto = require('./modelos/Contacto');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 
-
-// ==================================================
-// CONEXIÓN CON MONGODB
-// ==================================================
 
 const mongoUri = process.env.MONGO_URI?.trim().replace(/^["']|["']$/g, '');
 
@@ -28,36 +23,30 @@ mongoose.connect(mongoUri)
     .then(() => console.log('MongoDB conectado'))
     .catch(error => console.error('Error al conectar con MongoDB:', error));
 
+
 // Permite recibir información en formato JSON
 app.use(express.json());
 
 
-// ==================================================
-// INICIO
-// ==================================================
-
-const path = require('node:path');
 
 // Mostrar la página principal del frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../Frontend')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(__dirname, '../Frontend/index.html'));
 });
 
-// ==================================================
-// SERVICIOS
-// ==================================================
 
 // GET: obtener todos los servicios
 app.get('/productos', async (req, res) => {
     try {
-        const servicios = await Servicio.find();
+        const servicios = await ServicioModel.find();
         console.log("Servicios encontrados:", servicios.map(s => s.nombre));
 
         res.json(servicios);
 
-    } catch (error) {
+    } 
+    catch (error) {
 
         res.status(500).json({
             mensaje: 'Error al obtener los servicios',
@@ -72,13 +61,14 @@ app.get('/productos', async (req, res) => {
 app.post('/productos', async (req, res) => {
     try {
 
-        const nuevoServicio = new Servicio(req.body);
+        const nuevoServicio = new ServicioModel(req.body);
 
         const servicioGuardado = await nuevoServicio.save();
 
         res.status(201).json(servicioGuardado);
 
     } catch (error) {
+        console.log(error);
 
         res.status(500).json({
             mensaje: 'Error al guardar el servicio',
@@ -93,12 +83,7 @@ app.post('/productos', async (req, res) => {
 app.put('/productos/:id', async (req, res) => {
     try {
 
-        const servicioActualizado =
-            await Servicio.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                { new: true }
-            );
+        const servicioActualizado = await ServicioModel.findByIdAndUpdate( req.params.id, req.body, { new: true });
 
         res.json(servicioActualizado);
 
@@ -117,10 +102,7 @@ app.put('/productos/:id', async (req, res) => {
 app.delete('/productos/:id', async (req, res) => {
     try {
 
-        const servicioEliminado =
-            await Servicio.findByIdAndDelete(
-                req.params.id
-            );
+        const servicioEliminado = await ServicioModel.findByIdAndDelete(req.params.id);
 
         res.json(servicioEliminado);
 
@@ -135,15 +117,11 @@ app.delete('/productos/:id', async (req, res) => {
 });
 
 
-// ==================================================
-// PROMOCIONES
-// ==================================================
-
 // GET: obtener promociones
 app.get('/promociones', async (req, res) => {
     try {
 
-        const promociones = await Promocion.find();
+        const promociones = await PromocionModel.find();
 
         res.json(promociones);
 
@@ -162,14 +140,14 @@ app.get('/promociones', async (req, res) => {
 app.post('/promociones', async (req, res) => {
     try {
 
-        const nuevaPromocion = new Promocion(req.body);
+        const nuevaPromocion = new PromocionModel(req.body);
 
-        const promocionGuardada =
-            await nuevaPromocion.save();
+        const promocionGuardada = await nuevaPromocion.save();
 
         res.status(201).json(promocionGuardada);
 
-    } catch (error) {
+    } 
+    catch (error) {
 
         res.status(500).json({
             mensaje: 'Error al guardar la promoción',
@@ -184,16 +162,11 @@ app.post('/promociones', async (req, res) => {
 app.put('/promociones/:id', async (req, res) => {
     try {
 
-        const promocionActualizada =
-            await Promocion.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                { new: true }
-            );
-
+        const promocionActualizada = await PromocionModel.findByIdAndUpdate(req.params.id,req.body, { new: true });
         res.json(promocionActualizada);
 
-    } catch (error) {
+    } 
+    catch (error) {
 
         res.status(500).json({
             mensaje: 'Error al actualizar la promoción',
@@ -208,14 +181,11 @@ app.put('/promociones/:id', async (req, res) => {
 app.delete('/promociones/:id', async (req, res) => {
     try {
 
-        const promocionEliminada =
-            await Promocion.findByIdAndDelete(
-                req.params.id
-            );
-
+        const promocionEliminada =  await PromocionModel.findByIdAndDelete(req.params.id);
         res.json(promocionEliminada);
 
-    } catch (error) {
+    } 
+    catch (error) {
 
         res.status(500).json({
             mensaje: 'Error al eliminar la promoción',
@@ -226,20 +196,15 @@ app.delete('/promociones/:id', async (req, res) => {
 });
 
 
-// ==================================================
-// RECONOCIMIENTOS
-// ==================================================
-
 // GET: obtener reconocimientos
 app.get('/reconocimientos', async (req, res) => {
     try {
 
-        const reconocimientos =
-            await Reconocimiento.find();
-
+        const reconocimientos = await ReconocimientoModel.find();
         res.json(reconocimientos);
 
-    } catch (error) {
+    } 
+    catch (error) {
 
         res.status(500).json({
             mensaje: 'Error al obtener los reconocimientos',
@@ -254,11 +219,9 @@ app.get('/reconocimientos', async (req, res) => {
 app.post('/reconocimientos', async (req, res) => {
     try {
 
-        const nuevoReconocimiento =
-            new Reconocimiento(req.body);
+        const nuevoReconocimiento = new ReconocimientoModel(req.body);
 
-        const reconocimientoGuardado =
-            await nuevoReconocimiento.save();
+        const reconocimientoGuardado = await nuevoReconocimiento.save();
 
         res.status(201).json(reconocimientoGuardado);
 
@@ -277,12 +240,7 @@ app.post('/reconocimientos', async (req, res) => {
 app.put('/reconocimientos/:id', async (req, res) => {
     try {
 
-        const reconocimientoActualizado =
-            await Reconocimiento.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                { new: true }
-            );
+        const reconocimientoActualizado = await ReconocimientoModel.findByIdAndUpdate(req.params.id,req.body,{ new: true });
 
         res.json(reconocimientoActualizado);
 
@@ -301,10 +259,7 @@ app.put('/reconocimientos/:id', async (req, res) => {
 app.delete('/reconocimientos/:id', async (req, res) => {
     try {
 
-        const reconocimientoEliminado =
-            await Reconocimiento.findByIdAndDelete(
-                req.params.id
-            );
+        const reconocimientoEliminado = await ReconocimientoModel.findByIdAndDelete(req.params.id);
 
         res.json(reconocimientoEliminado);
 
@@ -319,19 +274,14 @@ app.delete('/reconocimientos/:id', async (req, res) => {
 });
 
 
-// ==================================================
-// CONTACTOS
-// ==================================================
 
 // POST: guardar un contacto
 app.post('/contactos', async (req, res) => {
     try {
 
-        const nuevoContacto =
-            new Contacto(req.body);
+        const nuevoContacto = new ContactoModel(req.body);
 
-        const contactoGuardado =
-            await nuevoContacto.save();
+        const contactoGuardado = await nuevoContacto.save();
 
         res.status(201).json(contactoGuardado);
 
@@ -350,9 +300,7 @@ app.post('/contactos', async (req, res) => {
 app.get('/contactos', async (req, res) => {
     try {
 
-        const contactos =
-            await Contacto.find()
-                .sort({ fecha: -1 });
+        const contactos = await ContactoModel.find().sort({ fecha: -1 });
 
         res.json(contactos);
 
@@ -371,16 +319,11 @@ app.get('/contactos', async (req, res) => {
 app.put('/contactos/:id', async (req, res) => {
     try {
 
-        const contactoActualizado =
-            await Contacto.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                { new: true }
-            );
-
+        const contactoActualizado = await ContactoModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(contactoActualizado);
 
-    } catch (error) {
+    } 
+    catch (error) {
 
         res.status(500).json({
             mensaje: 'Error al actualizar el contacto',
@@ -391,12 +334,8 @@ app.put('/contactos/:id', async (req, res) => {
 });
 
 
-// ==================================================
-// SERVIDOR
-// ==================================================
+const port = Number(process.env.PORT) || 3000;
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`Servidor funcionando en el puerto ${PORT}`);
+app.listen(port, () => {
+    console.log(`Servidor funcionando en el puerto ${port}`);
 });

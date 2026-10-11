@@ -1,14 +1,21 @@
-const mongoose = require('mongoose');
-const Servicio = require('./modelos/Servicio');
-const servicios = require('./datos/servicios');
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import { ServicioModel } from './modelos/Servicio.js';
+import { serviciosData } from './datos/servicios.js';
+import { promocionesData } from './datos/promociones.js';
+import { PromocionModel } from './modelos/Promocion.js';
+import { ReconocimientoModel } from './modelos/Reconocimiento.js';
+import { reconocimientosData } from './datos/reconocimientos.js';
 
-mongoose.connect('mongodb+srv://jacobogarcesoquendo:aFJzVMGN3o7fA38A@cluster0.mqwbn.mongodb.net/aprendocontigo')
+mongoose.connect(process.env.MONGO_URI)
     .then(async () => {
         console.log('MongoDB conectado');
 
-        await Servicio.deleteMany({});
+        await ServicioModel.deleteMany({});
 
-        await Servicio.insertMany(servicios);
+        await ServicioModel.insertMany(serviciosData);
+        await PromocionModel.insertMany(promocionesData);
+        await ReconocimientoModel.insertMany(reconocimientosData);
 
         console.log('Los 8 servicios fueron cargados correctamente');
 

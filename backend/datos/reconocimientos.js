@@ -1,4 +1,4 @@
-const reconocimientos = [
+export const reconocimientosData = [
 
     {
         nombre: 'Bono al esfuerzo del mes',
@@ -20,4 +20,3 @@ const reconocimientos = [
 
 ];
 
-module.exports = reconocimientos;

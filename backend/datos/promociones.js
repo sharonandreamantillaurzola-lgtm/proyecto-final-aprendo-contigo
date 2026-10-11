@@ -1,4 +1,4 @@
-const promociones = [
+export const promocionesData = [
 
     {
         nombre: 'Promoción especial',
@@ -8,4 +8,3 @@ const promociones = [
 
 ];
 
-module.exports = promociones;

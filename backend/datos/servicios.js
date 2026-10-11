@@ -1,4 +1,4 @@
-const servicios = [
+export const serviciosData = [
 
     {
         nombre: 'Clase Impulso Presencial',
@@ -125,4 +125,3 @@ const servicios = [
 
 ];
 
-module.exports = servicios;

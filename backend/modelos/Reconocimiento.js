@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const reconocimientoSchema = new mongoose.Schema({
     nombre: {
@@ -42,9 +42,8 @@ const reconocimientoSchema = new mongoose.Schema({
     }
 });
 
-const Reconocimiento = mongoose.model(
-    'Reconocimiento',
+export const ReconocimientoModel = mongoose.model(
+    'reconocimientos',
     reconocimientoSchema
 );
 
-module.exports = Reconocimiento;

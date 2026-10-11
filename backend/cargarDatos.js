@@ -1,21 +1,23 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import { PromocionModel } from './modelos/Promocion.js';
+import { ReconocimientoModel } from './modelos/Reconocimiento.js';
+import { promocionesData } from './datos/promociones.js';
+import { reconocimientosData } from './datos/reconocimientos.js';
 
-const Promocion = require('./modelos/Promocion');
-const Reconocimiento = require('./modelos/Reconocimiento');
 
-const promociones = require('./datos/promociones');
-const reconocimientos = require('./datos/reconocimientos');
-
-mongoose.connect('mongodb+srv://jacobogarcesoquendo:aFJzVMGN3o7fA38A@cluster0.mqwbn.mongodb.net/aprendocontigo')
+/*
+    conecction db and insert data in schemas
+*/
+mongoose.connect(process.env.MONGO_URI)
     .then(async () => {
 
         console.log('MongoDB conectado');
 
-        await Promocion.deleteMany({});
-        await Reconocimiento.deleteMany({});
+        await PromocionModel.deleteMany({});
+        await ReconocimientoModel.deleteMany({});
 
-        await Promocion.insertMany(promociones);
-        await Reconocimiento.insertMany(reconocimientos);
+        await PromocionModel.insertMany(promocionesData);
+        await ReconocimientoModel.insertMany(reconocimientosData);
 
         console.log('Promociones y reconocimientos cargados correctamente');
 
