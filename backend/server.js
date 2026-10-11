@@ -1,5 +1,12 @@
-const express = require('express');
+
+require('dotenv').config();
+
+const dns = require('node:dns');
+dns.setServers(['8.8.8.8']);
+
 const mongoose = require('mongoose');
+
+const express = require('express');
 const cors = require('cors');
 
 const Servicio = require('./modelos/Servicio');
@@ -29,10 +36,14 @@ app.use(express.json());
 // INICIO
 // ==================================================
 
-app.get('/', (req, res) => {
-    res.send('Hola desde mi backend de Aprendo Contigo');
-});
+const path = require('node:path');
 
+// Mostrar la página principal del frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
 
 // ==================================================
 // SERVICIOS
@@ -42,6 +53,7 @@ app.get('/', (req, res) => {
 app.get('/productos', async (req, res) => {
     try {
         const servicios = await Servicio.find();
+        console.log("Servicios encontrados:", servicios.map(s => s.nombre));
 
         res.json(servicios);
 
