@@ -28,6 +28,8 @@ mongoose.connect(mongoUri)
 // Permite recibir información en formato JSON
 app.use(express.json());
 
+
+
 app.use('/api', router);
 
 // Mostrar la página principal del frontend

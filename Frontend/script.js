@@ -21,7 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const acudiente = document.getElementById("acudiente");
+    const correo = document.getElementById("correo");
     const telefono = document.getElementById("telefono");
+    const estudiante = document.getElementById("estudiante");
     const edad = document.getElementById("edad");
     const grado = document.getElementById("grado");
     const modalidad = document.getElementById("modalidad");
@@ -236,12 +238,13 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     formulario.addEventListener(
       "submit",
-      function (event) {
+      async function (event) {
 
 
         const valido =
 
           validarNombre() &&
+          validarCampo(correo) &&
           validarTelefono() &&
           validarEdad() &&
           validarCampo(grado) &&
@@ -261,7 +264,47 @@ document.addEventListener("DOMContentLoaded", () => {
             "Por favor completa correctamente el formulario"
           );
 
+          return;
 
+
+
+        event.preventDefault();
+
+        const botonEnviar = formulario.querySelector("button[type='submit']");
+        botonEnviar.disabled = true;
+
+        const datos = {
+          nombre: acudiente.value.trim(),
+          correo: correo.value.trim(),
+          telefono: telefono.value.trim(),
+          edad: Number(edad.value),
+          servicioInteresado: `${estudiante.value.trim()} - ${grado.value.trim()} - ${modalidad.value} - ${area.value.trim()}`,
+          mensaje: mensaje.value.trim()
+        };
+
+        try {
+          const respuesta = await fetch(`${API_URL}/contactos`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+          });
+
+          const resultado = await respuesta.json();
+
+          if (!respuesta.ok) {
+            throw new Error(resultado.error || resultado.mensaje || "No se pudo guardar la solicitud");
+          }
+
+          alert("Solicitud enviada correctamente");
+          formulario.reset();
+        } catch (error) {
+          console.error("Error al guardar la solicitud:", error);
+          alert(`No se pudo guardar la solicitud: ${error.message}`);
+        } finally {
+          botonEnviar.disabled = false;
+        }
         }
 
 
