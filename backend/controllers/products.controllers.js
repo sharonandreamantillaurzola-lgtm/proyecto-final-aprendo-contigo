@@ -1,3 +1,5 @@
+import { ServicioModel } from "../modelos/Servicio.js";
+
 // GET: obtener todos los servicios
 export const getProducts =  async (req, res) => {
     try {

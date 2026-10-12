@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel admin | Aprendo Contigo</title>
+    <link rel="icon" href="imagenes/logo.png" type="image/png">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <main class="admin-shell">
+
+        <section id="login-view" class="auth-card">
+            <img src="imagenes/logo.png" alt="Logo de Aprendo Contigo" class="brand-mark">
+            <p class="eyebrow">Zona privada</p>
+            <h1>Panel administrativo</h1>
+            <p id="auth-description">Ingresa con una cuenta que tenga rol de administrador.</p>
+            <div class="auth-switch" role="tablist" aria-label="Acceso y registro">
+                <button type="button" class="auth-tab active" data-auth-view="login">Ingresar</button>
+                <button type="button" class="auth-tab" data-auth-view="register">Registrarse</button>
+            </div>
+            <form id="login-form" data-auth-panel="login" autocomplete="off">
+                <label>Correo<input type="email" name="loginEmail" required autocomplete="off" value=""></label>
+                <label>Contraseña<input type="password" name="loginPassword" required autocomplete="off" value=""></label>
+                <button type="submit">Ingresar</button>
+                <p id="login-message" class="message" role="alert"></p>
+            </form>
+            <form id="register-form" data-auth-panel="register" autocomplete="off" hidden>
+                <label>Nombre<input type="text" name="registerName" required minlength="1" autocomplete="off" value=""></label>
+                <label>Correo<input type="email" name="registerEmail" required autocomplete="off" value=""></label>
+                <label>Contraseña<input type="password" name="registerPassword" required minlength="8" autocomplete="new-password" value=""></label>
+                <label>Confirmar contraseña<input type="password" name="confirmPassword" required minlength="8" autocomplete="new-password" value=""></label>
+                <button type="submit">Crear cuenta</button>
+                <p id="register-message" class="message" role="alert"></p>
+            </form>
+            <a href="index.html" class="back-link">Volver a al inicio</a>
+        </section>
+
+        <section id="dashboard-view" class="dashboard" hidden>
+            <header class="dashboard-header">
+                <div>
+                    <p class="eyebrow">Aprendo Contigo</p>
+                    <h1>Panel administrativo</h1>
+                    <p id="admin-identity"></p>
+                </div>
+                <button id="logout-button" class="button-secondary">Cerrar sesión</button>
+            </header>
+            <nav id="resource-tabs" class="tabs" aria-label="Secciones administrativas"></nav>
+            <section id="resource-view" class="resource-view"></section>
+        </section>
+    
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

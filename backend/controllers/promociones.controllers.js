@@ -1,3 +1,7 @@
+import { PromocionModel } from "../modelos/Promocion.js";
+
+
+
 // GET: obtener promociones
 export const getPromotions = async (req, res) => {
     try {

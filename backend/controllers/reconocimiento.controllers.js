@@ -1,3 +1,5 @@
+import { ReconocimientoModel } from "../modelos/Reconocimiento.js";
+
 // GET: obtener reconocimientos
 export const getRecognitions = async (req, res) => {
     try {

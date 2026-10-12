@@ -33,7 +33,7 @@
                     <li><a href="#testimonios">Testimonios</a></li>
                     <li><a href="#asistente-ia">Asistente IA</a></li>
                     <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="#login">Iniciar sesión</a></li>
+                    <li><a href="admin.html">Iniciar sesión</a></li>
 
                 </ul>
             </nav>
@@ -342,7 +342,7 @@
 
                     <h2>💻 Clases individuales</h2>
 
-                    <div class="contenedor-tarjetas">
+                    <div id="productos-dinamicos" class="contenedor-tarjetas">
 
                         <article class="tarjeta">
 
@@ -617,14 +617,13 @@
 
                 </div>
 
-                <div class="promociones">
+                <div id="promociones-dinamicas" class="promociones">
 
                     <h2>📢 Promociones</h2>
 
-                    <p>
-                        Mantente atento a nuestra página, ya que estaremos actualizando
-                        constantemente promociones, beneficios y oportunidades especiales.
-                    </p>
+                    <div class="promociones-lista">
+                        <p>Cargando promociones...</p>
+                    </div>
 
                 </div>
 
@@ -995,13 +994,13 @@
                 <h2>🔐 Iniciar sesión</h2>
 
                 <p>
-                    Esta sección estará disponible próximamente para que estudiantes
-                    y acudientes puedan acceder a sus recursos y seguimiento académico.
+                    El acceso administrativo está reservado para usuarios con permisos
+                    de administrador.
                 </p>
 
-                <button>
-                    Próximamente
-                </button>
+                <a href="admin.html">
+                    <button type="button">Ir al panel administrativo</button>
+                </a>
 
             </section>
 
@@ -1062,7 +1061,7 @@
             </footer>
 
         </main>
-        <script src="script.js"></script>
+        <script src="index.js"></script>
     </body>
 
     </body>

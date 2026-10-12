@@ -4,10 +4,6 @@ import express from 'express';
 import cors from 'cors';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { ServicioModel } from './modelos/Servicio.js';
-import { PromocionModel } from './modelos/Promocion.js';
-import { ReconocimientoModel } from './modelos/Reconocimiento.js';
-import { ContactoModel } from './modelos/Contacto.js';
 import router from './routes.js';
 
 
@@ -15,7 +11,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
+const allowedOrigins = (process.env.FRONTEND_URLS || '')
+    .split(',')
+    .map(origin => origin.trim().replace(/\/$/, ''))
+    .filter(Boolean);
+
+const localOrigins = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+];
+
+app.use(cors({
+    origin(origin, callback) {
+        if (!origin || origin === 'null' || allowedOrigins.includes(origin) || localOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        callback(new Error('Origen no permitido por CORS'));
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 204
+}));
+
 
 
 const mongoUri = process.env.MONGO_URI?.trim().replace(/^["']|["']$/g, '');
