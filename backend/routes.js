@@ -27,6 +27,7 @@ import {
     adminDeleteUser,
 } from './controllers/user.controller.js';
 import { requireAuth, requireSameUser, requireAdmin } from './middleware/auth.middleware.js';
+import { createContacto } from './controllers/contactos.controllers.js';
 
 const router = Router();
 
@@ -46,6 +47,8 @@ router.get('/promotions', getPromotions);
 router.post('/promotions', requireAuth, requireAdmin, createPromotion);
 router.put('/promotions/:id', requireAuth, requireAdmin, updatePromotion);
 router.delete('/promotions/:id', requireAuth, requireAdmin, deletePromotion);
+
+router.post('/contactos', createContacto);
 
 router.get('/recognitions', getRecognitions);
 router.post('/recognitions', requireAuth, requireAdmin, createRecognition);

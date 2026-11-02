@@ -50,11 +50,17 @@ app.use(express.json());
 
 app.use('/api', router);
 
-// Mostrar la página principal del frontend
-app.use(express.static(path.join(__dirname, '../Frontend')));
+// Servir el build de producción del frontend (React)
+const DIST_DIR = path.join(__dirname, '../frontend/dist');
+app.use(express.static(DIST_DIR));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Frontend/index.html'));
+// Fallback SPA: las rutas del cliente (p. ej. /admin) sirven index.html.
+// No se tocan las rutas /api que no hayan coincidido: siguen a su 404.
+app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api')) {
+        return res.sendFile(path.join(DIST_DIR, 'index.html'));
+    }
+    next();
 });
 
 

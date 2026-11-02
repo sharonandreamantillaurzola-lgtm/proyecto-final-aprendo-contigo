@@ -29,7 +29,7 @@ body::before {
   left: 50%;
   width: 500px;
   height: 500px;
-  background-image: url("./imagenes/logo.png");
+  background-image: url("/imagenes/logo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -2447,7 +2447,7 @@ body::before {
 
   height: 500px;
 
-  background-image: url("./imagenes/logo.png");
+  background-image: url("/imagenes/logo.png");
 
   background-size: contain;
 
