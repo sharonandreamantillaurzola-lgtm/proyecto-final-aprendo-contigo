@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { apiClient } from '../api/client.js';
 
+const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || 'https://formspree.io/f/mgojjywg';
+
 const INITIAL_VALUES = {
   guardian: '',
   email: '',
@@ -49,14 +51,39 @@ export function useContactForm() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      await apiClient.post('/contactos', {
-        nombre: values.guardian.trim(),
-        correo: values.email.trim(),
-        telefono: values.phone.trim(),
-        edad: Number(values.age),
-        servicioInteresado: `${values.student.trim()} - ${values.grade.trim()} - ${values.modality} - ${values.area.trim()}`,
-        mensaje: values.message.trim(),
-      });
+      const sendToFormspree = async () => {
+        const response = await fetch(FORMSPREE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            acudiente: values.guardian.trim(),
+            email: values.email.trim(),
+            telefono: values.phone.trim(),
+            estudiante: values.student.trim(),
+            edad: values.age,
+            grado: values.grade.trim(),
+            modalidad: values.modality,
+            area: values.area.trim(),
+            mensaje: values.message.trim(),
+          }),
+        });
+        if (!response.ok) {
+          const data = await response.json().catch(() => ({}));
+          throw new Error(data.errors?.[0]?.message || 'No se pudo enviar el formulario');
+        }
+      };
+
+      await Promise.all([
+        apiClient.post('/contactos', {
+          nombre: values.guardian.trim(),
+          correo: values.email.trim(),
+          telefono: values.phone.trim(),
+          edad: Number(values.age),
+          servicioInteresado: `${values.student.trim()} - ${values.grade.trim()} - ${values.modality} - ${values.area.trim()}`,
+          mensaje: values.message.trim(),
+        }),
+        sendToFormspree(),
+      ]);
       setSuccess(true);
       setValues(INITIAL_VALUES);
       setErrors({});
