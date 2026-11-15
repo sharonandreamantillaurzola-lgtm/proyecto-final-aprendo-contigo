@@ -1,3 +1,4 @@
+import { asset } from '../../config.js';
 export default function Nosotros() {
   return (
     <section id="nosotros">
@@ -21,14 +22,14 @@ export default function Nosotros() {
         </div>
 
         <div className="imagen-nosotros">
-          <img src="/imagenes/nosotros.png" alt="Niños aprendiendo con Aprendo Contigo" />
+          <img src={asset('/imagenes/nosotros.png')} alt="Niños aprendiendo con Aprendo Contigo" />
         </div>
       </div>
 
       <h3>¿Quién es Sharon Mantilla?</h3>
 
       <div className="foto-sharon">
-        <img src="/imagenes/sharon.jpg" alt="Sharon Mantilla" />
+        <img src={asset('/imagenes/sharon.jpg')} alt="Sharon Mantilla" />
         <p>
           Sharon Mantilla es la fundadora y tutora de Aprendo Contigo. Es Normalista
           Superior con profundización pedagógica y estudiante de Ingeniería en Ciencia

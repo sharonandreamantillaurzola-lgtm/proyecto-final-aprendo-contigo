@@ -1,16 +1,17 @@
+import { asset } from '../../config.js';
 const TESTIMONIOS = [
   {
-    imagen: '/imagenes/imagen1.jpg',
+    imagen: asset('/imagenes/imagen1.jpg'),
     texto: 'El acompañamiento recibido ha permitido fortalecer sus conocimientos, mejorar su confianza y avanzar en su proceso académico de manera positiva.',
     autor: '👩 Madre de estudiante de quinto grado',
   },
   {
-    imagen: '/imagenes/imagen2.jpg',
+    imagen: asset('/imagenes/imagen2.jpg'),
     texto: 'Las clases han sido dinámicas, personalizadas y adaptadas a sus necesidades, logrando que disfrute más su proceso de aprendizaje.',
     autor: '👩 Madre de estudiante de segundo grado',
   },
   {
-    imagen: '/imagenes/imagen3.jpg',
+    imagen: asset('/imagenes/imagen3.jpg'),
     texto: 'Gracias al apoyo y la orientación recibida, ha logrado reforzar sus habilidades y sentirse más seguro al desarrollar sus actividades escolares.',
     autor: '👩 Madre de estudiante de tercer grado',
   },

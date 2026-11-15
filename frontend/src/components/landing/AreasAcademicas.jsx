@@ -1,3 +1,4 @@
+import { asset } from '../../config.js';
 const AREAS = [
   {
     titulo: '➗ Matemáticas',
@@ -39,7 +40,7 @@ export default function AreasAcademicas() {
 
       <div className="imagen-areas">
         <img
-          src="/imagenes/imagen5.jpg"
+          src={asset('/imagenes/imagen5.jpg')}
           alt="Ilustración de estudiantes aprendiendo diferentes áreas académicas"
         />
       </div>

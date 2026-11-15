@@ -1,3 +1,4 @@
+import { asset } from '../config.js';
 import { useStylesheet } from '../hooks/useStylesheet.js';
 import Header from '../components/landing/Header.jsx';
 import Hero from '../components/landing/Hero.jsx';
@@ -12,7 +13,7 @@ import LoginCta from '../components/landing/LoginCta.jsx';
 import Footer from '../components/landing/Footer.jsx';
 
 export default function LandingPage() {
-  useStylesheet('/styles/style.css');
+  useStylesheet(asset('/styles/style.css'));
 
   return (
     <>

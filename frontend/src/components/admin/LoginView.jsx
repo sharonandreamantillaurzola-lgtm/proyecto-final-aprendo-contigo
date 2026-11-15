@@ -1,3 +1,4 @@
+import { asset } from '../../config.js';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth.js';
 import { Link } from 'react-router-dom';
@@ -63,7 +64,7 @@ export default function LoginView() {
 
   return (
     <section id="login-view" className="auth-card">
-      <img src="/imagenes/logo.png" alt="Logo de Aprendo Contigo" className="brand-mark" />
+      <img src={asset('/imagenes/logo.png')} alt="Logo de Aprendo Contigo" className="brand-mark" />
       <p className="eyebrow">Zona privada</p>
       <h1>Panel administrativo</h1>
       <p id="auth-description">{description}</p>

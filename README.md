@@ -120,14 +120,28 @@ En desarrollo, Vite reenvía `/api` al backend en `http://localhost:3000`. Si tu
 API_PROXY_TARGET=http://localhost:3001 npm run dev
 ```
 
-Variables opcionales de `frontend/.env`:
+### ⚙️ Configuración del frontend
 
-| Variable | Descripción | Por defecto |
-|----------|-------------|-------------|
-| `VITE_API_URL` | URL base de la API | `/api` (usa el proxy) |
-| `VITE_FORMSPREE_URL` | Endpoint de Formspree del formulario | `https://formspree.io/f/mgojjywg` |
+Todas las direcciones están centralizadas en **`frontend/src/config.js`**. No hace falta `.env` ni secrets:
 
-### 3. Producción
+| Constante | Descripción |
+|-----------|-------------|
+| `PRODUCTION_API_URL` | URL del backend desplegado (terminada en `/api`). Se usa en el build de producción. |
+| `FORMSPREE_URL` | Endpoint de Formspree del formulario de contacto |
+
+En desarrollo la app usa `/api` automáticamente, y Vite lo reenvía al backend local.
+
+### 3. Despliegue en GitHub Pages
+
+El workflow `.github/workflows/deploy-pages.yml` compila el frontend y lo publica en GitHub Pages en cada push a `main` que toque `frontend/`.
+
+1. En el repo, ve a **Settings → Pages → Source** y elige **GitHub Actions**.
+2. Pon la URL de tu backend en `PRODUCTION_API_URL` (`frontend/src/config.js`).
+3. En el servidor del backend, agrega `https://<usuario>.github.io` a `FRONTEND_URLS` para que CORS lo permita.
+
+> GitHub Pages solo sirve archivos estáticos, así que el backend debe estar desplegado aparte (Render, Railway, etc.).
+
+### 4. Producción en un solo servidor (opcional)
 
 ```bash
 cd frontend && npm run build

@@ -1,5 +1,6 @@
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+import { API_URL } from '../config.js';
 
+const API_BASE = API_URL;
 
 class ApiClient {
   constructor(baseUrl = API_BASE) {

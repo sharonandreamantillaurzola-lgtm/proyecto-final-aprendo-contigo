@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { apiClient } from '../api/client.js';
-
-const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || 'https://formspree.io/f/mgojjywg';
+import { FORMSPREE_URL } from '../config.js';
 
 const INITIAL_VALUES = {
   guardian: '',

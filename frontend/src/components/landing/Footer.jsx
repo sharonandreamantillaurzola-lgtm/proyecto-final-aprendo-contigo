@@ -1,3 +1,4 @@
+import { asset } from '../../config.js';
 const REDES = [
   ['https://www.facebook.com/share/1FxydzkPb6/?mibextid=wwXIfr', '📘 Facebook'],
   ['https://www.tiktok.com/@aprendocontigo.ac?_r=1&_t=ZS-97Iwtmz5ueF', '🎵 TikTok'],
@@ -9,7 +10,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-marca">
-        <img src="/imagenes/logo.png" alt="Logo de Aprendo Contigo" />
+        <img src={asset('/imagenes/logo.png')} alt="Logo de Aprendo Contigo" />
         <h2>📚 Aprendo Contigo</h2>
         <p>
           Fortaleciendo aprendizajes, creando confianza y acompañando cada proceso

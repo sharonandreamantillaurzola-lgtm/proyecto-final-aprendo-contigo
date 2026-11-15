@@ -1,3 +1,4 @@
+import { asset } from '../../config.js';
 export default function Hero() {
   return (
     <section id="hero">
@@ -24,7 +25,7 @@ export default function Hero() {
       </div>
 
       <div className="hero-imagen">
-        <img src="/imagenes/imagen4.jpg" alt="Ilustración de aprendizaje personalizado" />
+        <img src={asset('/imagenes/imagen4.jpg')} alt="Ilustración de aprendizaje personalizado" />
       </div>
     </section>
   );

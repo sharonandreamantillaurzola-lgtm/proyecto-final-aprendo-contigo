@@ -1,3 +1,4 @@
+import { asset } from '../../config.js';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ export default function Header() {
   return (
     <header>
       <div className="logo">
-        <img src="/imagenes/logo.png" alt="Logo de Aprendo Contigo" />
+        <img src={asset('/imagenes/logo.png')} alt="Logo de Aprendo Contigo" />
         <h1>Aprendo Contigo</h1>
       </div>
 
