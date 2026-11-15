@@ -33,6 +33,18 @@ Proyecto final del programa **Jóvenes Creativos**
 
 ---
 
+## 🌐 Despliegue
+
+| Parte | Dónde vive | Repositorio |
+|-------|------------|-------------|
+| 🎨 Frontend (React) | [GitHub Pages](https://sharonandreamantillaurzola-lgtm.github.io/proyecto-final-aprendo-contigo/) | **Este repo** (`frontend/`) |
+| ⚙️ Backend (API) | [Vercel](https://aprendocontigobackenddd.vercel.app/api/products) | [**proyecto-sharon**](https://github.com/sharonandreamantillaurzola-lgtm/proyecto-sharon) (`backend/`) |
+
+> ⚠️ **El backend de producción está en otro repo:** [`proyecto-sharon`](https://github.com/sharonandreamantillaurzola-lgtm/proyecto-sharon).
+> La carpeta `backend/` de este repo sirve para desarrollo local. Cualquier cambio en la API que deba llegar a producción tiene que subirse a `proyecto-sharon`, que es el que Vercel despliega automáticamente en cada push a `main`.
+
+---
+
 ## 🛠️ Tecnologías
 
 | Capa | Herramientas |
@@ -81,6 +93,8 @@ aprendo-contigo/
   ```
 
 ### 1. Backend
+
+> Esto es para correr la API en tu compu. La versión de producción se despliega desde [`proyecto-sharon`](https://github.com/sharonandreamantillaurzola-lgtm/proyecto-sharon).
 
 ```bash
 cd backend
@@ -136,10 +150,10 @@ En desarrollo la app usa `/api` automáticamente, y Vite lo reenvía al backend 
 El workflow `.github/workflows/deploy-pages.yml` compila el frontend y lo publica en GitHub Pages en cada push a `main` que toque `frontend/`.
 
 1. En el repo, ve a **Settings → Pages → Source** y elige **GitHub Actions**.
-2. Pon la URL de tu backend en `PRODUCTION_API_URL` (`frontend/src/config.js`).
-3. En el servidor del backend, agrega `https://<usuario>.github.io` a `FRONTEND_URLS` para que CORS lo permita.
+2. La URL del backend ya está en `PRODUCTION_API_URL` (`frontend/src/config.js`): `https://aprendocontigobackenddd.vercel.app/api`.
+3. En Vercel, la variable `FRONTEND_URLS` del backend debe incluir `https://sharonandreamantillaurzola-lgtm.github.io` para que CORS lo permita.
 
-> GitHub Pages solo sirve archivos estáticos, así que el backend debe estar desplegado aparte (Render, Railway, etc.).
+> GitHub Pages solo sirve archivos estáticos, por eso el backend está desplegado aparte en **Vercel**, desde el repo [`proyecto-sharon`](https://github.com/sharonandreamantillaurzola-lgtm/proyecto-sharon).
 
 ### 4. Producción en un solo servidor (opcional)
 
