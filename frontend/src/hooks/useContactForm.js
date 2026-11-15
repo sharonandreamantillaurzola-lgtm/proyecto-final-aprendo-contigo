@@ -72,17 +72,22 @@ export function useContactForm() {
         }
       };
 
-      await Promise.all([
-        apiClient.post('/contactos', {
-          nombre: values.guardian.trim(),
-          correo: values.email.trim(),
-          telefono: values.phone.trim(),
-          edad: Number(values.age),
-          servicioInteresado: `${values.student.trim()} - ${values.grade.trim()} - ${values.modality} - ${values.area.trim()}`,
-          mensaje: values.message.trim(),
-        }),
-        sendToFormspree(),
-      ]);
+      const saveInBackend = apiClient.post('/contactos', {
+        nombre: values.guardian.trim(),
+        correo: values.email.trim(),
+        telefono: values.phone.trim(),
+        edad: Number(values.age),
+        servicioInteresado: `${values.student.trim()} - ${values.grade.trim()} - ${values.modality} - ${values.area.trim()}`,
+        mensaje: values.message.trim(),
+      });
+
+      // Formspree (el correo) es lo principal: si falla, se muestra el error.
+      // Guardar en el backend es secundario y no bloquea el envío.
+      const [backendResult, formspreeResult] = await Promise.allSettled([saveInBackend, sendToFormspree()]);
+      if (formspreeResult.status === 'rejected') throw formspreeResult.reason;
+      if (backendResult.status === 'rejected') {
+        console.warn('No se pudo guardar el contacto en el backend:', backendResult.reason);
+      }
       setSuccess(true);
       setValues(INITIAL_VALUES);
       setErrors({});
